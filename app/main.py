@@ -11,8 +11,8 @@ import sys
 import os
 import io
 
-sys.path.append(os.path.abspath('../utils'))  # add utils folder to Python path
-from utils.clip_filter import is_larva_image
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'utils')))
+from clip_filter import is_larva_image
 
 # Set up Streamlit
 st.set_page_config(page_title="🦟 Larvae Classifier", layout="centered")
