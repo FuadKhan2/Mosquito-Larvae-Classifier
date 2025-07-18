@@ -64,7 +64,7 @@ def load_model(name):
         model = torch.load("model/resnet50_final.pt", map_location="cpu", weights_only=False)
     elif name == "VisionTransformer":
         import timm
-        from timm.models.vision_transformer import VisionTransformer, Block, Attention
+        from timm.models.vision_transformer import VisionTransformer, Block, Attention, Mlp
 
         from timm.layers.patch_embed import PatchEmbed
         from timm.layers.format import Format
@@ -104,7 +104,8 @@ def load_model(name):
             nn.SiLU,
             nn.Softmin,
             Block,
-            Attention,      
+            Attention,   
+            Mlp,   
         ])
 
         # Download full model from Hugging Face (use raw/resolve link)
