@@ -1,0 +1,25 @@
+# Ignore Python bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+ENV/
+.venv/
+
+# VS Code
+.vscode/
+
+# System/OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter and logs
+.ipynb_checkpoints/
+*.log
+
+# Ignore only the ViT model (since it's loaded from Hugging Face)
+model/vit_final.pt
+
+# Optional: Streamlit config
+.streamlit/
