@@ -22,4 +22,4 @@ Thumbs.db
 model/vit_final.pt
 
 # Optional: Streamlit config
-.streamlit/
+#.streamlit/
