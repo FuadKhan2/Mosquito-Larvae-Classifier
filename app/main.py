@@ -62,17 +62,20 @@ def load_model(name):
     elif name == "ResNet50":
         model = torch.load("model/resnet50_final.pt", map_location="cpu", weights_only=False)
     elif name == "VisionTransformer":
+        import timm
         from timm.models.vision_transformer import VisionTransformer
+        import torch
         torch.serialization.add_safe_globals([VisionTransformer])
 
-        # Load ViT model weights from Hugging Face
-        vit_url = "https://huggingface.co/FuadKhan2/ViT_model/blob/main/vit_final.pt" 
-        vit_weights = torch.hub.load_state_dict_from_url(vit_url, map_location="cpu")
+        # Download full model from Hugging Face (use raw/resolve link)
+        import tempfile
+        import urllib.request
 
-        from timm import create_model
-        model = create_model("vit_base_patch16_224", pretrained=False, num_classes=3)
-        model.load_state_dict(vit_weights)
-        model.eval()
+        vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_final.pt"
+        with tempfile.NamedTemporaryFile() as tmp:
+            urllib.request.urlretrieve(vit_url, tmp.name)
+            model = torch.load(tmp.name, map_location="cpu")
+            model.eval()
     elif name == "YOLOv8":
         from ultralytics import YOLO
         model = YOLO("model/yolov8m.pt")
