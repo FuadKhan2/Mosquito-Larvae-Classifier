@@ -6,7 +6,7 @@ numpy
 timm
 scikit-learn
 matplotlib
-opencv-python
+opencv-python-headless
 git+https://github.com/openai/CLIP.git
 transformers
 ultralytics
