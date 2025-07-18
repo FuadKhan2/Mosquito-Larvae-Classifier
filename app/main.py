@@ -64,7 +64,6 @@ def load_model(name):
     elif name == "VisionTransformer":
         import timm
         from timm.models.vision_transformer import VisionTransformer
-        import torch
         torch.serialization.add_safe_globals([VisionTransformer])
 
         # Download full model from Hugging Face (use raw/resolve link)
