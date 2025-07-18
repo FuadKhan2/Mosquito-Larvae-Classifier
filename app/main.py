@@ -56,11 +56,11 @@ clip_model, clip_preprocess = load_clip()
 @st.cache_resource
 def load_model(name):
     if name == "EfficientNetB0":
-        model = torch.load("../model/efficientnetb0_final.pt", map_location="cpu", weights_only=False)
+        model = torch.load("model/efficientnetb0_final.pt", map_location="cpu", weights_only=False)
     elif name == "MobileNetV3":
-        model = torch.load("../model/mobilenetv3_large_final.pt", map_location="cpu", weights_only=False)
+        model = torch.load("model/mobilenetv3_large_final.pt", map_location="cpu", weights_only=False)
     elif name == "ResNet50":
-        model = torch.load("../model/resnet50_final.pt", map_location="cpu", weights_only=False)
+        model = torch.load("model/resnet50_final.pt", map_location="cpu", weights_only=False)
     elif name == "VisionTransformer":
         from timm.models.vision_transformer import VisionTransformer
         torch.serialization.add_safe_globals([VisionTransformer])
@@ -75,7 +75,7 @@ def load_model(name):
         model.eval()
     elif name == "YOLOv8":
         from ultralytics import YOLO
-        model = YOLO("../model/yolov8m.pt")
+        model = YOLO("model/yolov8m.pt")
     else:
         raise ValueError("Model not recognized")
 
