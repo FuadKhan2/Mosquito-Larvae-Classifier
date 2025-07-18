@@ -114,7 +114,7 @@ def load_model(name):
         vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_final.pt"
         with tempfile.NamedTemporaryFile() as tmp:
             urllib.request.urlretrieve(vit_url, tmp.name)
-            model = torch.load(tmp.name, map_location="cpu")
+            model = torch.load(tmp.name, map_location="cpu", weights_only=False)
             model.eval()
     elif name == "YOLOv8":
         from ultralytics import YOLO
