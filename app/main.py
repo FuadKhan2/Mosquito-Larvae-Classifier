@@ -1,5 +1,6 @@
 import streamlit as st
 import torch
+import torch.nn as nn
 from torchvision import transforms
 from PIL import Image
 import numpy as np
@@ -65,7 +66,13 @@ def load_model(name):
         import timm
         from timm.models.vision_transformer import VisionTransformer
         from timm.layers.patch_embed import PatchEmbed
-        torch.serialization.add_safe_globals([VisionTransformer, PatchEmbed, torch.nn.Conv2d])
+
+        torch.serialization.add_safe_globals([
+            VisionTransformer,
+            PatchEmbed,
+            nn.Conv2d,
+            nn.Identity
+        ])
 
         # Download full model from Hugging Face (use raw/resolve link)
         import tempfile
