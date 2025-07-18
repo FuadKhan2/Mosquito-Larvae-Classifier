@@ -66,12 +66,17 @@ def load_model(name):
         import timm
         from timm.models.vision_transformer import VisionTransformer
         from timm.layers.patch_embed import PatchEmbed
+        from timm.layers.format import Format
 
         torch.serialization.add_safe_globals([
             VisionTransformer,
             PatchEmbed,
+            Format,
+            nn.Linear,
+            nn.LayerNorm,
+            nn.Dropout,
             nn.Conv2d,
-            nn.Identity
+            nn.Identity,
         ])
 
         # Download full model from Hugging Face (use raw/resolve link)
