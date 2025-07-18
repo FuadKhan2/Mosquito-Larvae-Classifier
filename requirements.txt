@@ -9,4 +9,3 @@ matplotlib
 opencv-python
 clip
 transformers
-python_version == 3.11
