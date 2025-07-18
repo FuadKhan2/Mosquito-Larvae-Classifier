@@ -2,7 +2,7 @@
 
 This is a responsive, mobile-friendly Streamlit app that classifies mosquito larvae using deep learning models. Users can either upload an image or capture one in real time via webcam or mobile camera.
 
-> Developed by **Md. Fuad Khan** as part of a final-year CSE thesis project.
+> Developed by **MD. Fuad Khan** and **Md. Bodrul Islam** as part of a final-year CSE thesis project.
 
 ## Features
 
