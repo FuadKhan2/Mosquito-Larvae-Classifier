@@ -173,7 +173,7 @@ if image:
 
         # --- CLIP Similarity Filtering ---
         st.write("📊 Running CLIP similarity check...")
-        threshold = st.slider("CLIP similarity threshold", 0.1, 0.5, 0.28, 0.01)
+        threshold = 0.28
         is_larva, sim_score = is_larva_image(image, threshold=threshold)
 
         st.write(f"🔎 Similarity score with larva descriptions: `{sim_score:.2f}`")
