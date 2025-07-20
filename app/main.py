@@ -20,20 +20,20 @@ st.title("🦟 Mosquito Larvae Classifier")
 st.caption("Choose model, upload image or use webcam → Get prediction or 'No larvae detected'!")
 
 # Dark mode toggle
-dark_mode = st.toggle("🌙 Dark Mode")
-if dark_mode:
-    st.markdown("""
-        <style>
-            body {
-                background-color: #111111;
-                color: #EEEEEE;
-            }
-            .stButton>button {
-                background-color: #444444;
-                color: white;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+# dark_mode = st.toggle("🌙 Dark Mode")
+# if dark_mode:
+#     st.markdown("""
+#         <style>
+#             body {
+#                 background-color: #111111;
+#                 color: #EEEEEE;
+#             }
+#             .stButton>button {
+#                 background-color: #444444;
+#                 color: white;
+#             }
+#         </style>
+#     """, unsafe_allow_html=True)
 
 # Class labels
 class_names = ['Aedes', 'Anopheles', 'Culex']
@@ -176,13 +176,12 @@ if image:
         threshold = 0.28
         is_larva, sim_score = is_larva_image(image, threshold=threshold)
 
-        st.write(f"🔎 Similarity score with larva descriptions: `{sim_score:.2f}`")
 
         if not is_larva:
             st.error("🛑 Image does not resemble a mosquito larva. Prediction aborted.")
             st.stop()
         else:
-            st.success("✅ CLIP similarity check passed — looks like a larva.")
+            st.success("✅ CLIP similarity check passed — looks like a Mosquito larva.")
 
         # --- CLIP class-name filter ---
         # st.write("🔍 Running CLIP class-name filter...")
