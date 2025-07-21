@@ -63,59 +63,18 @@ def load_model(name):
         model = torch.load("model/resnet50_final.pt", map_location="cpu", weights_only=False)
     elif name == "VisionTransformer":
         import timm
-        import torch.nn as nn
-        from timm.models.vision_transformer import VisionTransformer, Block, Attention, Mlp
-        from timm.layers.patch_embed import PatchEmbed
-        from timm.layers.format import Format
-
-        torch.serialization.add_safe_globals([
-            VisionTransformer,
-            PatchEmbed,
-            Format,
-            nn.Linear,
-            nn.LayerNorm,
-            nn.Dropout,
-            nn.Conv2d,
-            nn.Identity,
-            nn.Sequential,
-            nn.ModuleList,
-            nn.ModuleDict,
-            nn.ConvTranspose2d,
-            nn.Upsample,
-            nn.AdaptiveAvgPool2d,
-            nn.AdaptiveMaxPool2d,
-            nn.MaxPool2d,
-            nn.AvgPool2d,
-            nn.BatchNorm2d,
-            nn.ReLU,
-            nn.Sigmoid,
-            nn.Tanh,
-            nn.Softmax,
-            nn.LeakyReLU,
-            nn.PReLU,
-            nn.ELU,
-            nn.SELU,
-            nn.GELU,
-            nn.Softplus,
-            nn.Softsign,
-            nn.Hardswish,
-            nn.Hardtanh,
-            nn.SiLU,
-            nn.Softmin,
-            Block,
-            Attention,   
-            Mlp,   
-        ])
 
         # Download full model from Hugging Face (use raw/resolve link)
         import tempfile
         import urllib.request
 
-        vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_final.pt"
+        vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_best_weights.pth"
+        model = timm.create_model("vit_base_patch16_224", pretrained=False, num_classes=3)
         with tempfile.NamedTemporaryFile() as tmp:
             urllib.request.urlretrieve(vit_url, tmp.name)
-            model = torch.load(tmp.name, map_location="cpu", weights_only=False)
-            model.eval()
+            state_dict = torch.load(tmp.name, map_location="cpu")
+            model.load_state_dict(state_dict)
+        model.eval()
     elif name == "YOLOv8":
         from ultralytics import YOLO
         model = YOLO("model/yolov8m.pt")
