@@ -61,20 +61,20 @@ def load_model(name):
         model = torch.load("model/mobilenetv3_large_final.pt", map_location="cpu", weights_only=False)
     elif name == "ResNet50":
         model = torch.load("model/resnet50_final.pt", map_location="cpu", weights_only=False)
-    elif name == "VisionTransformer":
-        import timm
+    # elif name == "VisionTransformer":
+    #     import timm
 
-        # Download full model from Hugging Face (use raw/resolve link)
-        import tempfile
-        import urllib.request
+    #     # Download full model from Hugging Face (use raw/resolve link)
+    #     import tempfile
+    #     import urllib.request
 
-        vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_best_weights.pth"
-        model = timm.create_model("vit_base_patch16_224", pretrained=False, num_classes=3)
-        with tempfile.NamedTemporaryFile() as tmp:
-            urllib.request.urlretrieve(vit_url, tmp.name)
-            state_dict = torch.load(tmp.name, map_location="cpu")
-            model.load_state_dict(state_dict)
-        model.eval()
+    #     vit_url = "https://huggingface.co/FuadKhan2/ViT_model/resolve/main/vit_best_weights.pth"
+    #     model = timm.create_model("vit_base_patch16_224", pretrained=False, num_classes=3)
+    #     with tempfile.NamedTemporaryFile() as tmp:
+    #         urllib.request.urlretrieve(vit_url, tmp.name)
+    #         state_dict = torch.load(tmp.name, map_location="cpu")
+    #         model.load_state_dict(state_dict)
+    #     model.eval()
     elif name == "YOLOv8":
         from ultralytics import YOLO
         model = YOLO("model/yolov8m.pt")
@@ -98,7 +98,7 @@ model_name = st.selectbox("Select a model", [
     "EfficientNetB0",
     "MobileNetV3",
     "ResNet50",
-    "VisionTransformer",
+    #"VisionTransformer",
     "YOLOv8"
 ])
 model = load_model(model_name)
